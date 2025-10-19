@@ -19,7 +19,12 @@
     for (const entry of entries){
       if (!entry.isIntersecting) continue;
       const row = entry.target;
-  const priceEl = row.querySelector(S.PRICE_CELL || '.price');
+      // Skip if already injected
+      if (row.__flipHelperBox || (row.nextElementSibling && row.nextElementSibling.matches?.(S.FLIP_BOX || '.flip-helper-box'))) {
+        intersectionObserver.unobserve(row);
+        continue;
+      }
+      const priceEl = row.querySelector(S.PRICE_CELL || '.price');
       if (!priceEl) continue;
       // Delegates creation to UI module
       const priceText = priceEl.textContent.trim();
@@ -31,6 +36,8 @@
       row.insertAdjacentElement('afterend', box);
       row.__flipHelperBox = box;
       UI.bindCustomPrice(box, fee);
+      // Stop observing this row after first successful injection to avoid duplicates
+      intersectionObserver.unobserve(row);
       if (!itemKey){
         setTimeout(()=>{
           if (box.dataset.itemKey) return;
