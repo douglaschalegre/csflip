@@ -8,7 +8,7 @@
     {
       "matches": ["*://csfloat.com/*"],
   "js": ["core/pricing.js", "core/salesStats.js", "core/itemKey.js", "ui/flipBox.js", "observers/priceRows.js", "observers/salesTable.js", "content.js"],
-      "css": ["style.css"]
+      "css": ["style.css", "ui/styles.css"]
     }
   ]
 }
