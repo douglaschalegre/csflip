@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2,
+  "name": "CSFloat Flip Helper",
+  "version": "1.0",
+  "description": "Shows break-even and profit margin for CS2 skin flips on CSFloat",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://csfloat.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ]
+}
